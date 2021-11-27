@@ -135,11 +135,10 @@ def main(args):
                 generate_submission(model, dataset, f"submissions/final_{epoch}_2_sub.txt")
             else:
                 hm = run_test(dataset, model)
-                if hm > 0.043:
-                    str_hm = "hm_" + f"{hm:.5f}"[2:]
-                    temp = f"{filename}_e{epoch}_{str_hm}"
-                    torch.save(model.state_dict(), f"checkpoints/{temp}.pth")
-                    generate_submission(model, dataset, f"submissions/{temp}_sub.txt")
+                str_hm = "hm_" + f"{hm:.5f}"[2:]
+                temp = f"{filename}_e{epoch}_{str_hm}"
+                torch.save(model.state_dict(), f"checkpoints/{temp}.pth")
+                generate_submission(model, dataset, f"submissions/{temp}_sub.txt")
     #run_test()
     #generate_submission(model, dataset, f"submissions/{'final_imp'}_sub.txt")
 
