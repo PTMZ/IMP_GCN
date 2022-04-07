@@ -63,7 +63,8 @@ class LightGCN(nn.Module):
         
         all_emb_list = [all_emb]
         for layer in range(self.n_layers):
-            all_emb_list.append(torch.sparse.mm(g_droped, all_emb))
+            all_emb = torch.sparse.mm(g_droped, all_emb)
+            all_emb_list.append(all_emb)
 
         all_emb = torch.mean(torch.stack(all_emb_list),0)
         #all_emb = all_emb_list[-1]
